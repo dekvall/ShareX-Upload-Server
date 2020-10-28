@@ -9,6 +9,7 @@ services:
       - ./src/db.json:/usr/src/app/db.json
       - uploads:/var/lib/sharex-server/uploads
       - puploads:/var/lib/sharex-server/passwordUploads
+      - views:/var/lib/sharex-server/views
     logging:
       #limit logs to 200MB (4rotations of 50M each)
       driver: "json-file"
@@ -18,3 +19,4 @@ services:
 volumes:
   uploads:
   puploads:
+  views:

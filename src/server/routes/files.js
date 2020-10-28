@@ -57,6 +57,7 @@ async function files(req, res) {
     const fileExt = files.fdata.name
       .substring(files.fdata.name.lastIndexOf(".") + 1, files.fdata.name.length)
       .toLowerCase();
+    let viewDir = `/var/lib/sharex-server/views`;
     let baseDir = `/var/lib/sharex-server/uploads`;
     let basePWDir = `/var/lib/sharex-server/passwordUploads`;
     let base = fields.pupload ? basePWDir : baseDir;
@@ -180,7 +181,7 @@ async function files(req, res) {
           const stream = fs.createWriteStream(`${storepath}${fileName}.html`);
           stream.once("open", () => {
             ejs.renderFile(
-              `${__dirname}/../views/puploadAuth.ejs`,
+              `${viewDir}/puploadAuth.ejs`,
               {
                 fileName: `${fileName}.${fileExt}`,
               },
@@ -251,7 +252,7 @@ async function files(req, res) {
               );
               stream.once("open", () => {
                 ejs.renderFile(
-                  `${__dirname}/../views/photoShowCase.ejs`,
+                  `${viewDir}/photoShowCase.ejs`,
                   {
                     camera: camera,
                     fstop,
@@ -300,7 +301,7 @@ async function files(req, res) {
           );
           stream.once("open", () => {
             ejs.renderFile(
-              `${__dirname}/../views/md.ejs`,
+              `${viewDir}/md.ejs`,
               {
                 ogDesc: data.match(/.{1,297}/g)[0],
                 mdRender: md.render(data),

@@ -199,14 +199,14 @@ class ShareXAPI {
     });
     // All files in /uploads/ are publicly accessible via http
     this.app.use(
-      express.static(`${__dirname}/uploads/`, {
+      express.static(`/var/lib/sharex-server/uploads`, {
         extensions: this.c.admin.allowed.includes("*")
           ? null
           : this.c.admin.allowed,
       })
     );
     this.app.use(
-      express.static(`${__dirname}/views/`, {
+      express.static(`/var/lib/sharex-server/views`, {
         extensions: ["css"],
       })
     );

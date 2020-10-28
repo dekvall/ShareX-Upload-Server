@@ -51,6 +51,41 @@
       "path": "/b9nB4.png",
       "ip": "Unknown",
       "views": 0
+    },
+    {
+      "path": "/m9iQP.png",
+      "ip": "172.29.0.1",
+      "views": 1,
+      "original": "/var/lib/sharex-server/uploads/m9iQP.png",
+      "showCase": false
+    },
+    {
+      "path": "/r3TrC.md",
+      "ip": "172.29.0.1",
+      "views": 1,
+      "original": "/var/lib/sharex-server/uploads/r3TrC.md",
+      "showCase": false
+    },
+    {
+      "path": "/1i3ua.json",
+      "ip": "172.29.0.1",
+      "views": 0,
+      "original": "/var/lib/sharex-server/uploads/1i3ua.json",
+      "showCase": false
+    },
+    {
+      "path": "/IJw3l.json",
+      "ip": "172.29.0.1",
+      "views": 1,
+      "original": "/var/lib/sharex-server/uploads/IJw3l.json",
+      "showCase": false
+    },
+    {
+      "path": "/Ky9R5.js",
+      "ip": "172.29.0.1",
+      "views": 1,
+      "original": "/var/lib/sharex-server/uploads/Ky9R5.js",
+      "showCase": false
     }
   ],
   "bans": [],
@@ -204,12 +239,32 @@
       "date": "2020-10-28T15:09:41.571Z",
       "ip": "172.29.0.1",
       "path": "/b9nB4"
+    },
+    {
+      "date": "2020-10-28T18:15:43.641Z",
+      "ip": "172.29.0.1",
+      "path": "/m9iQP.png"
+    },
+    {
+      "date": "2020-10-28T18:16:47.856Z",
+      "ip": "172.29.0.1",
+      "path": "/r3TrC.md"
+    },
+    {
+      "date": "2020-10-28T18:19:29.232Z",
+      "ip": "172.29.0.1",
+      "path": "/IJw3l.json"
+    },
+    {
+      "date": "2020-10-28T18:20:52.239Z",
+      "ip": "172.29.0.1",
+      "path": "/Ky9R5.js"
     }
   ],
   "trafficTotal": [
     {
       "month": "10/2020",
-      "total": 21
+      "total": 25
     }
   ],
   "passwordUploads": []
