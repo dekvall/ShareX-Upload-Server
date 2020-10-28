@@ -2,3 +2,8 @@ src/node_modules
 src/config.real.json
 src/package-lock.json
 src/db.json
+src/uploads
+!src/uploads/*.css
+!src/uploads/*.html
+!src/uploads/*.js
+!src/uploads/*.ico
