@@ -85,12 +85,6 @@ If you have multiple domains pointed to this webserver, only one (can include wi
 - Properly Configure Template
 - Change `Destination Location`
 
-### Configuring for Password Protected Uploading
-
-- Add a field to your body called `pupload`, and then make the value whatever you want the password to be
-- Upload something, and the upload will give you a url to the authentication page
-- Type in your password, and it will display/download the file!
-
 #### Auto Password Generation
 
 In addition to being able to use any password you want for puploads, if you type in `*random*` as your pupload field, the server will automatically generate a password for you. This password will include letters, numbers, and special characters. It will generate a key based on the length you specify in your config (puploadKeyGenLength). When making requests, the server will return the image URL with the key like so `URL: https://qoilo.com/lhHr | KEY: Np$[CBk>X[c^YY{MDlCHH0|Qfm1uK0*lld^Mi$f4d62R5x6C2>~yaL}3*QYnziuZ`

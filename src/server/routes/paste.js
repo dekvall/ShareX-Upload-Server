@@ -31,7 +31,7 @@ async function paste(req, res) {
     const oldpath = files.fdata.path;
     let baseDir = `/var/lib/sharex-server/uploads`;
     let viewDir = `/var/lib/sharex-server/views`;
-    const newpath = `${basedir}/${
+    const newpath = `${baseDir}/${
       fileName +
       files.fdata.name
         .toString()

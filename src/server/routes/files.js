@@ -59,8 +59,7 @@ async function files(req, res) {
       .toLowerCase();
     let viewDir = `/var/lib/sharex-server/views`;
     let baseDir = `/var/lib/sharex-server/uploads`;
-    let basePWDir = `/var/lib/sharex-server/passwordUploads`;
-    let base = fields.pupload ? basePWDir : baseDir;
+    let base = baseDir;
     let urlpath = this.c.dateURLPath
       ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
       : "";
@@ -103,8 +102,7 @@ async function files(req, res) {
       (!fileExt.includes("png") &&
         !fileExt.includes("jpg") &&
         !fileExt.includes("jpeg") &&
-        !fileExt.includes("md") &&
-        !fields.pupload)
+        !fileExt.includes("md"))
     ) {
       returnedFileName = `${fileName}.${fileExt}`;
     } else {
@@ -159,56 +157,6 @@ async function files(req, res) {
         return res.end();
       }
       res.write(`${protocol}://${req.headers.host}/ERR_ILLEGAL_FILE_TYPE`);
-      return res.end();
-    }
-    if (fields.pupload) {
-      let altKey = this.randomToken(this.c.puploadKeyGenLength, true);
-      fs.move(oldpath, newpath, () => {
-        let puploadKey;
-        if (fields.pupload === "*random*") {
-          puploadKey = altKey;
-        } else {
-          puploadKey = fields.pupload;
-        }
-        this.db
-          .get("passwordUploads")
-          .push({
-            fileName: `${fileName}.${fileExt}`,
-            key: puploadKey,
-          })
-          .write();
-        fs.readFile(newpath, "utf-8", () => {
-          const stream = fs.createWriteStream(`${storepath}${fileName}.html`);
-          stream.once("open", () => {
-            ejs.renderFile(
-              `${viewDir}/puploadAuth.ejs`,
-              {
-                fileName: `${fileName}.${fileExt}`,
-              },
-              {},
-              (_err, str) => {
-                stream.write(str);
-              }
-            );
-            stream.end();
-          });
-        });
-      });
-      if (err) return res.write(err);
-      this.log.verbose(
-        `New File Upload: ${protocol}://${req.headers.host}/${urlpath}${returnedFileName} | IP: ${userIP} | KEY: ${authKey}`
-      );
-      if (usingUploader === true) {
-        res.redirect(
-          `/?success=${protocol}://${req.headers.host}/${urlpath}${returnedFileName}`
-        );
-        return res.end();
-      }
-      fields.pupload === "*random*"
-        ? res.write(
-            `URL: ${protocol}://${req.headers.host}/${returnedFileName} | KEY: ${altKey}`
-          )
-        : res.write(`${protocol}://${req.headers.host}/${returnedFileName}`);
       return res.end();
     }
     if (fields.showCase === true) {
