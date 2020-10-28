@@ -98,12 +98,12 @@ async function files(req, res) {
     newpath = `${storepath}${fileName}.${fileExt}`;
     let returnedFileName;
     if (
-      this.c.alwaysShowExtensions ||
-      (!fileExt.includes("png") &&
-        !fileExt.includes("jpg") &&
-        !fileExt.includes("jpeg") &&
-        !fileExt.includes("md"))
+      !fileExt.includes("png") &&
+      !fileExt.includes("jpg") &&
+      !fileExt.includes("jpeg") &&
+      !fileExt.includes("md")
     ) {
+      // These are rendered by the showCase
       returnedFileName = `${fileName}.${fileExt}`;
     } else {
       returnedFileName = fileName;
