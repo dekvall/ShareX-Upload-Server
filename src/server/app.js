@@ -214,7 +214,6 @@ class ShareXAPI {
     // routing
     this.app.get("*", routes.err404.bind(this));
     this.app.post("/api/shortener", routes.shortener.bind(this));
-    this.app.post("/pupload", routes.pupload.bind(this));
     this.app.post("/api/paste", routes.paste.bind(this));
     this.app.post("/api/files", routes.files.bind(this));
 

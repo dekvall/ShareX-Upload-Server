@@ -29,7 +29,9 @@ async function paste(req, res) {
       })
       .write();
     const oldpath = files.fdata.path;
-    const newpath = `${__dirname}/../uploads/${
+    let baseDir = `/var/lib/sharex-server/uploads`;
+    let viewDir = `/var/lib/sharex-server/views`;
+    const newpath = `${basedir}/${
       fileName +
       files.fdata.name
         .toString()
@@ -45,15 +47,13 @@ async function paste(req, res) {
     }
     fs.move(oldpath, newpath, () => {
       fs.readFile(newpath, "utf-8", (_err, data) => {
-        const stream = fs.createWriteStream(
-          `${__dirname}/../uploads/${fileName}.html`
-        );
+        const stream = fs.createWriteStream(`${baseDir}/${fileName}.html`);
         stream.once("open", () => {
           // eslint-disable-next-line no-unused-vars
           let cleaned = data.replace(/>/g, "&gt");
           cleaned = cleaned.replace(/</g, "&lt");
           ejs.renderFile(
-            `${__dirname}/../views/paste.ejs`,
+            `${viewDir}/paste.ejs`,
             {
               ogDesc: data.match(/.{1,297}/g)[0],
               pData: data,
