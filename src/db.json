@@ -3,7 +3,7 @@
     {
       "path": "/",
       "ip": "Unknown",
-      "views": 3
+      "views": 4
     },
     {
       "path": "/short",
@@ -32,6 +32,23 @@
     },
     {
       "path": "/files",
+      "ip": "Unknown",
+      "views": 0
+    },
+    {
+      "path": "/b9nB4",
+      "ip": "172.29.0.1",
+      "views": 2,
+      "original": "/usr/src/app/server/routes/../uploads/b9nB4.png",
+      "showCase": false
+    },
+    {
+      "path": "/b9nB4david@matberedare",
+      "ip": "Unknown",
+      "views": 0
+    },
+    {
+      "path": "/b9nB4.png",
       "ip": "Unknown",
       "views": 0
     }
@@ -162,12 +179,37 @@
       "date": "2020-10-28T14:47:23.504Z",
       "ip": "172.29.0.1",
       "path": "/files"
+    },
+    {
+      "date": "2020-10-28T15:05:10.981Z",
+      "ip": "172.29.0.1",
+      "path": "/"
+    },
+    {
+      "date": "2020-10-28T15:09:02.885Z",
+      "ip": "172.29.0.1",
+      "path": "/b9nB4david@matberedare"
+    },
+    {
+      "date": "2020-10-28T15:09:10.084Z",
+      "ip": "172.29.0.1",
+      "path": "/b9nB4"
+    },
+    {
+      "date": "2020-10-28T15:09:23.370Z",
+      "ip": "172.29.0.1",
+      "path": "/b9nB4.png"
+    },
+    {
+      "date": "2020-10-28T15:09:41.571Z",
+      "ip": "172.29.0.1",
+      "path": "/b9nB4"
     }
   ],
   "trafficTotal": [
     {
       "month": "10/2020",
-      "total": 18
+      "total": 21
     }
   ],
   "passwordUploads": []

@@ -20,7 +20,7 @@
 docker-compose up --build -d
 ```
 
-`/src/config.real.json` will be the config file used if you used the above command to start the server. The web UI will be available on `https://server-ip:8443` if https is enabled, and `http://server-ip:8000` if it isn't.
+`/src/config.real.json` will be the config file used if you used the above command to start the server. The web UI will be available on `https://server-ip:8443` if https is enabled, and `http://server-ip:8484` if it isn't.
 
 ## Configuration
 
