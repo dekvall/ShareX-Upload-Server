@@ -212,16 +212,8 @@ class ShareXAPI {
     );
 
     // routing
-    this.app.get("/", routes.upload.bind(this));
-    this.app.get("/gallery", routes.gallery.get.bind(this));
-    this.app.get("/short", routes.short.get.bind(this));
-    this.app.get("/upload", routes.upload.bind(this));
-    this.app.get("/ERR_FILE_TOO_BIG", routes.fileTooBig.bind(this));
-    this.app.get("/ERR_ILLEGAL_FILE_TYPE", routes.illegalFileType.bind(this));
     this.app.get("*", routes.err404.bind(this));
     this.app.post("/api/shortener", routes.shortener.bind(this));
-    this.app.post("/short", routes.short.post.bind(this));
-    this.app.post("/gallery", routes.gallery.post.bind(this));
     this.app.post("/pupload", routes.pupload.bind(this));
     this.app.post("/api/paste", routes.paste.bind(this));
     this.app.post("/api/files", routes.files.bind(this));
