@@ -62,40 +62,40 @@ async function files(req, res) {
       let currentMonth = getDate("month");
       let currentYear = getDate("year");
       let currentDay = getDate("day");
-      let baseDir = `${__dirname}/../uploads/`;
-      let basePWDir = `${__dirname}/../passwordUploads/`;
+      let baseDir = `/var/lib/sharex-server/uploads`;
+      let basePWDir = `/var/lib/sharex-server/passwordUploads/`;
       fs.access(
-        `${baseDir}${currentYear}/${currentMonth}/${currentDay}`,
+        `${baseDir}/${currentYear}/${currentMonth}/${currentDay}`,
         (err) => {
           if (err && err.code === "ENOENT") {
-            fs.mkdirSync(`${baseDir}${currentYear}`);
-            fs.mkdirSync(`${baseDir}${currentYear}/${currentMonth}`);
+            fs.mkdirSync(`${baseDir}/${currentYear}`);
+            fs.mkdirSync(`${baseDir}/${currentYear}/${currentMonth}`);
             fs.mkdirSync(
-              `${baseDir}${currentYear}/${currentMonth}/${currentDay}`
+              `${baseDir}/${currentYear}/${currentMonth}/${currentDay}`
             );
           }
         }
       );
       fs.access(
-        `${basePWDir}${currentYear}/${currentMonth}/${currentDay}`,
+        `${basePWDir}/${currentYear}/${currentMonth}/${currentDay}`,
         (err) => {
           if (err && err.code === "ENOENT") {
-            fs.mkdirSync(`${basePWDir}${currentYear}`);
-            fs.mkdirSync(`${basePWDir}${currentYear}/${currentMonth}`);
+            fs.mkdirSync(`${basePWDir}/${currentYear}`);
+            fs.mkdirSync(`${basePWDir}/${currentYear}/${currentMonth}`);
             fs.mkdirSync(
-              `${basePWDir}${currentYear}/${currentMonth}/${currentDay}`
+              `${basePWDir}/${currentYear}/${currentMonth}/${currentDay}`
             );
           }
         }
       );
     }
     fields.pupload
-      ? (newpath = `${__dirname}/../passwordUploads/${
+      ? (newpath = `${basePWDir}/${
           this.c.dateURLPath === true
             ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
             : ""
         }${fileName}.${fileExt}`)
-      : (newpath = `${__dirname}/../uploads/${
+      : (newpath = `${basedir}/${
           this.c.dateURLPath === true
             ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
             : ""

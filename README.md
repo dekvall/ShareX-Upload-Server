@@ -36,10 +36,8 @@ You must fill this out for the webserver to work properly. Below explains the co
   "maxUploadSize": 50, // max upload size for non-admins using regular key in MB
   "markdown": true, // enables markdown rendering (upload whole .md file for render)
   "port": 80, // port to listen on
-  "secure": true, // Whether or not you want https. (make sure key and cert.pem are in src directory)
   "fileNameLength": 4, // File name length
   "shortUrlLength": 3, // File name length for short URLs
-  "securePort": 443, // Port to use when secure is true
   "ratelimit": 1000, // Ratelimit for POSTing in milliseconds
   "dateURLPath": false, // Set to true to prefix uploads with the date (Ex: https://domain.com/2020/04/22/ghNa.pdf)
   "allowed":[
