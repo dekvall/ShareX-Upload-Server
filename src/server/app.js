@@ -305,6 +305,8 @@ class ShareXAPI {
    * @returns {string} http OR https
    */
   protocol() {
+    // always proxied so..
+    return "https";
     if (this.c.secure) {
       return "https";
     }
