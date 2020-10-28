@@ -1,0 +1,17 @@
+version: "3"
+services:
+  sharex-server:
+    build: .
+    ports:
+      - "8000:80"
+      - "8443:443"
+    volumes:
+      - ./src/config.real.json:/usr/src/app/config.json
+      - ./src/db.json:/usr/src/app/db.json
+      - ./src/server/uploads:/usr/src/app/server/uploads/
+    logging:
+      #limit logs to 200MB (4rotations of 50M each)
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "4"
