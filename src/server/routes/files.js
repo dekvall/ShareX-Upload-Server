@@ -95,7 +95,7 @@ async function files(req, res) {
             ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
             : ""
         }${fileName}.${fileExt}`)
-      : (newpath = `${basedir}/${
+      : (newpath = `${baseDir}/${
           this.c.dateURLPath === true
             ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
             : ""
