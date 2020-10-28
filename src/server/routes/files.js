@@ -102,11 +102,12 @@ async function files(req, res) {
         }${fileName}.${fileExt}`);
     let returnedFileName;
     if (
-      !fileExt.includes("png") &&
-      !fileExt.includes("jpg") &&
-      !fileExt.includes("jpeg") &&
-      !fileExt.includes("md") &&
-      !fields.pupload
+      this.c.alwaysShowExtensions ||
+      (!fileExt.includes("png") &&
+        !fileExt.includes("jpg") &&
+        !fileExt.includes("jpeg") &&
+        !fileExt.includes("md") &&
+        !fields.pupload)
     ) {
       returnedFileName = `${fileName}.${fileExt}`;
     } else {
