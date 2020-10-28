@@ -3,14 +3,13 @@
 ## Features
 
 - ### Image/Video/General file uploading
-- ### Text (With [Syntax Highlighting](https://highlightjs.org/)) [[Example](https://cdn.qoilo.com/s62pq)]
+- ### Text (With [Syntax Highlighting](https://highlightjs.org/))
 - ### URL shortening + a front end for the URL shortener as well
-- ### [Markdown rendering](https://github.com/jonschlinkert/remarkable) files [[Example](https://cdn.qoilo.com/LxiR)]
-- ### Logging via a Discord channel
+- ### [Markdown rendering](https://github.com/jonschlinkert/remarkable) files
 - ### Password protected uploading (Uploads that require file-specific password to view/download)
 - ### Front end upload page [[Example](https://cdn.qoilo.com)]
 - ### Password protected gallery page (password is admin key)
-- ### Showcase images (image display pages that show metadata for photography) [[Example](https://cdn.qoilo.com/KH5z)]
+- ### Showcase images (image display pages that show metadata for photography)
 
 ## Installation (Ubuntu 16.04 Server)
 

@@ -342,7 +342,7 @@ async function files(req, res) {
       if (fileExt.toLowerCase() === "md" && this.c.markdown) {
         fs.readFile(newpath, "utf-8", (_readErr, data) => {
           const stream = fs.createWriteStream(
-            `${__dirname}/../uploads/${
+            `${baseDir}/${
               this.c.dateURLPath === true
                 ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
                 : ""
