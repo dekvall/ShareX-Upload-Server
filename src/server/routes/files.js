@@ -58,12 +58,12 @@ async function files(req, res) {
       .substring(files.fdata.name.lastIndexOf(".") + 1, files.fdata.name.length)
       .toLowerCase();
     let newpath;
+    let baseDir = `/var/lib/sharex-server/uploads`;
+    let basePWDir = `/var/lib/sharex-server/passwordUploads/`;
     if (this.c.dateURLPath === true) {
       let currentMonth = getDate("month");
       let currentYear = getDate("year");
       let currentDay = getDate("day");
-      let baseDir = `/var/lib/sharex-server/uploads`;
-      let basePWDir = `/var/lib/sharex-server/passwordUploads/`;
       fs.access(
         `${baseDir}/${currentYear}/${currentMonth}/${currentDay}`,
         (err) => {
