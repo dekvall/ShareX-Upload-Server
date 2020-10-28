@@ -57,9 +57,15 @@ async function files(req, res) {
     const fileExt = files.fdata.name
       .substring(files.fdata.name.lastIndexOf(".") + 1, files.fdata.name.length)
       .toLowerCase();
-    let newpath;
     let baseDir = `/var/lib/sharex-server/uploads`;
-    let basePWDir = `/var/lib/sharex-server/passwordUploads/`;
+    let basePWDir = `/var/lib/sharex-server/passwordUploads`;
+    let base = fields.pupload ? basePWDir : baseDir;
+    let urlpath = this.c.dateURLPath
+      ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
+      : "";
+    let storepath = `${base}/${urlpath}`;
+    let newpath;
+
     if (this.c.dateURLPath === true) {
       let currentMonth = getDate("month");
       let currentYear = getDate("year");
@@ -89,17 +95,7 @@ async function files(req, res) {
         }
       );
     }
-    fields.pupload
-      ? (newpath = `${basePWDir}/${
-          this.c.dateURLPath === true
-            ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-            : ""
-        }${fileName}.${fileExt}`)
-      : (newpath = `${baseDir}/${
-          this.c.dateURLPath === true
-            ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-            : ""
-        }${fileName}.${fileExt}`);
+    newpath = `${storepath}${fileName}.${fileExt}`;
     let returnedFileName;
     if (
       this.c.alwaysShowExtensions ||
@@ -124,16 +120,8 @@ async function files(req, res) {
       .get("files")
       .push({
         path: fields.showCase
-          ? `/${
-              this.c.dateURLPath === true
-                ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-                : ""
-            }${showCaseFile}`
-          : `/${
-              this.c.dateURLPath === true
-                ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-                : ""
-            }${returnedFileName}`,
+          ? `/${urlpath}${showCaseFile}`
+          : `/${urlpath}${returnedFileName}`,
         ip: userIP,
         views: 0,
         original: newpath,
@@ -189,9 +177,7 @@ async function files(req, res) {
           })
           .write();
         fs.readFile(newpath, "utf-8", () => {
-          const stream = fs.createWriteStream(
-            `${__dirname}/../uploads/${fileName}.html`
-          );
+          const stream = fs.createWriteStream(`${storepath}${fileName}.html`);
           stream.once("open", () => {
             ejs.renderFile(
               `${__dirname}/../views/puploadAuth.ejs`,
@@ -209,19 +195,11 @@ async function files(req, res) {
       });
       if (err) return res.write(err);
       this.log.verbose(
-        `New File Upload: ${protocol}://${req.headers.host}/${
-          this.c.dateURLPath === true
-            ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-            : ""
-        }${returnedFileName} | IP: ${userIP} | KEY: ${authKey}`
+        `New File Upload: ${protocol}://${req.headers.host}/${urlpath}${returnedFileName} | IP: ${userIP} | KEY: ${authKey}`
       );
       if (usingUploader === true) {
         res.redirect(
-          `/?success=${protocol}://${req.headers.host}/${
-            this.c.dateURLPath === true
-              ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-              : ""
-          }${returnedFileName}`
+          `/?success=${protocol}://${req.headers.host}/${urlpath}${returnedFileName}`
         );
         return res.end();
       }
@@ -269,13 +247,7 @@ async function files(req, res) {
               }
               let sizing = [width, height];
               const stream = fs.createWriteStream(
-                `${__dirname}/../uploads/${
-                  this.c.dateURLPath === true
-                    ? `${getDate("year")}/${getDate("month")}/${getDate(
-                        "day"
-                      )}/`
-                    : ""
-                }${showCaseFile}.html`
+                `${storepath}${showCaseFile}.html`
               );
               stream.once("open", () => {
                 ejs.renderFile(
@@ -292,13 +264,7 @@ async function files(req, res) {
                     lens: lens,
                     width: sizing[0],
                     height: sizing[1],
-                    filename: `${protocol}://${req.headers.host}/${
-                      this.c.dateURLPath === true
-                        ? `${getDate("year")}/${getDate("month")}/${getDate(
-                            "day"
-                          )}/`
-                        : ""
-                    }${fileName}.${fileExt}`,
+                    filename: `${protocol}://${req.headers.host}/${urlpath}${fileName}.${fileExt}`,
                   },
                   {},
                   (_err, str) => {
@@ -312,28 +278,16 @@ async function files(req, res) {
         });
         if (err) return res.write(err);
         this.log.verbose(
-          `New File Upload: ${protocol}://${req.headers.host}/${
-            this.c.dateURLPath === true
-              ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-              : ""
-          }${showCaseFile} | IP: ${userIP} | KEY ${authKey}`
+          `New File Upload: ${protocol}://${req.headers.host}/${urlpath}${showCaseFile} | IP: ${userIP} | KEY ${authKey}`
         );
         if (usingUploader === true) {
           res.redirect(
-            `/?success=${protocol}://${req.headers.host}/${
-              this.c.dateURLPath === true
-                ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-                : ""
-            }${showCaseFile}`
+            `/?success=${protocol}://${req.headers.host}/${urlpath}${showCaseFile}`
           );
           return res.end();
         }
         res.write(
-          `${protocol}://${req.headers.host}/${
-            this.c.dateURLPath === true
-              ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-              : ""
-          }${showCaseFile}`
+          `${protocol}://${req.headers.host}/${urlpath}${showCaseFile}`
         );
         return res.end();
       }
@@ -342,11 +296,7 @@ async function files(req, res) {
       if (fileExt.toLowerCase() === "md" && this.c.markdown) {
         fs.readFile(newpath, "utf-8", (_readErr, data) => {
           const stream = fs.createWriteStream(
-            `${baseDir}/${
-              this.c.dateURLPath === true
-                ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-                : ""
-            }${fileName}.html`
+            `${baseDir}/${urlpath}${fileName}.html`
           );
           stream.once("open", () => {
             ejs.renderFile(
@@ -369,28 +319,16 @@ async function files(req, res) {
       }
       if (err) return res.write(err);
       this.log.verbose(
-        `New File Upload: ${protocol}://${req.headers.host}/${
-          this.c.dateURLPath === true
-            ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-            : ""
-        }${returnedFileName} | IP: ${userIP} | KEY: ${authKey}`
+        `New File Upload: ${protocol}://${req.headers.host}/${urlpath}${returnedFileName} | IP: ${userIP} | KEY: ${authKey}`
       );
       if (usingUploader === true) {
         res.redirect(
-          `/?success=${protocol}://${req.headers.host}/${
-            this.c.dateURLPath === true
-              ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-              : ""
-          }${returnedFileName}`
+          `/?success=${protocol}://${req.headers.host}/${urlpath}${returnedFileName}`
         );
         return res.end();
       }
       res.write(
-        `${protocol}://${req.headers.host}/${
-          this.c.dateURLPath === true
-            ? `${getDate("year")}/${getDate("month")}/${getDate("day")}/`
-            : ""
-        }${returnedFileName}`
+        `${protocol}://${req.headers.host}/${urlpath}${returnedFileName}`
       );
       return res.end();
     });
