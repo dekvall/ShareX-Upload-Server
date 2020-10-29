@@ -17,5 +17,4 @@ services:
         max-file: "4"
 volumes:
   uploads:
-  puploads:
   views:
