@@ -201,7 +201,39 @@ class ShareXAPI {
     this.app.use(
       express.static(`/var/lib/sharex-server/uploads`, {
         extensions: this.c.admin.allowed.includes("*")
-          ? ["html"]
+          ? [
+              "png",
+              "jpg",
+              "gif",
+              "mp4",
+              "mp3",
+              "jpeg",
+              "tiff",
+              "bmp",
+              "ico",
+              "psd",
+              "eps",
+              "raw",
+              "cr2",
+              "nef",
+              "sr2",
+              "orf",
+              "svg",
+              "wav",
+              "webm",
+              "aac",
+              "flac",
+              "ogg",
+              "wma",
+              "m4a",
+              "gifv",
+              "html",
+              "json",
+              "py",
+              "java",
+              "js",
+              "ts",
+            ]
           : this.c.admin.allowed,
       })
     );
