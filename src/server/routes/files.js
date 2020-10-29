@@ -227,7 +227,7 @@ async function files(req, res) {
         });
         if (err) return res.write(err);
         this.log.verbose(
-          `New File Upload: ${protocol}://${req.headers.host}/${urlpath}${showCaseFile} | IP: ${userIP} | KEY ${authKey}`
+          `New File Upload: ${protocol}://${req.headers.host}/${urlpath}${showCaseFile} | IP: ${userIP}`
         );
         if (usingUploader === true) {
           res.redirect(
@@ -268,7 +268,7 @@ async function files(req, res) {
       }
       if (err) return res.write(err);
       this.log.verbose(
-        `New File Upload: ${protocol}://${req.headers.host}/${urlpath}${returnedFileName} | IP: ${userIP} | KEY: ${authKey}`
+        `New File Upload: ${protocol}://${req.headers.host}/${urlpath}${returnedFileName} | IP: ${userIP}`
       );
       if (usingUploader === true) {
         res.redirect(

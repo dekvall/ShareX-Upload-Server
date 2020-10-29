@@ -201,7 +201,7 @@ class ShareXAPI {
     this.app.use(
       express.static(`/var/lib/sharex-server/uploads`, {
         extensions: this.c.admin.allowed.includes("*")
-          ? null
+          ? ["html"]
           : this.c.admin.allowed,
       })
     );
